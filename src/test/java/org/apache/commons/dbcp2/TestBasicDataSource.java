@@ -756,17 +756,9 @@ public class TestBasicDataSource extends TestConnectionPool {
 
         assertTrue(attributes != null && attributes.length > 0);
 
-        for (MBeanAttributeInfo attribute : attributes) {
-            assertFalse("password".equalsIgnoreCase(attribute.getName()));
-        }
+        final String password = (String) mbs.getAttribute(dbcp562, "Password");
 
-        try{
-            mbs.getAttribute(dbcp562, "Password");
-        }catch (AttributeNotFoundException e){
-            assertTrue(true);
-        }catch(Exception e2){
-            fail();
-        }
+        assertEquals("", password);
 
     }
 }

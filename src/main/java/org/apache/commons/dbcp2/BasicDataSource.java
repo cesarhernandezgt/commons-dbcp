@@ -1013,8 +1013,13 @@ public class BasicDataSource implements DataSource, BasicDataSourceMXBean, MBean
      *
      * @return the connection password
      */
+    @Override
     public String getPassword() {
-        return this.password;
+        if (this.getJmxName() == null) {
+            return this.password;
+        } else {
+            return "";
+        }
     }
 
     /**
